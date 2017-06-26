@@ -1,5 +1,5 @@
 <template>
-<div class="div">
+<div class="timeaxis">
 
 <h2 style="padding:20px">网站历程:</h2>
 <div class="timezone">
@@ -13,9 +13,6 @@
                     </ul>
                 </div>
 </div>
-
-
-
 
             <div class="time" style="top:100px">
                 <h2 style="font-size:30px">2017-03</h2>
@@ -45,13 +42,7 @@
                     </ul>
                 </div>
             </div>
-
-
-
 </div>
-
-
-
 
 <div style="margin-top:100px">
 <div style="float:left;margin-left:80px">
@@ -83,7 +74,11 @@
 </template>
 
 <style>
-   .div{background:url(../../assets/backgroundImage.png)repeat-x;height:1100px}
+   .timeaxis{
+       background:url(../../assets/backgroundImage.png);
+       background-size: 100% 100%;
+       height:1100px
+   }
             h1{
                 text-align: center;
                 color:#fff;

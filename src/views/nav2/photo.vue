@@ -5,25 +5,25 @@
   action="https://jsonplaceholder.typicode.com/posts/"
   :on-preview="handlePictureCardPreview"
   :on-remove="handleRemove"
-  :file-list="fileList2"
+  :file-list="items"
   list-type="picture-card">
-
-   
-
 
 <el-button type="primary" @click="submitUpload">上传<i class="el-icon-upload el-icon--right"></i></el-button>
 
   <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
 </el-upload>
 <el-dialog v-model="dialogVisible" size="tiny">
-  <img width="100%" :src="dialogImageUrl" alt="">
-  
+<ul v-for="item in items" >
+<li>
+  <img width="100%" :src="items.url" alt="">
+  </li>
+  </ul>
 </el-dialog>
 
-<center>
+<!-- <center>
 <a href="http://localhost:8081/static/3d.html">
 <el-button   size="small" type="primary" icon="picture">3D照片墙</el-button>
-</a></center>
+</a></center> -->
 
 
 </div>
@@ -32,69 +32,50 @@
   export default {
     data() {
       return {
-        fileList2: [
-        {
-         url: 'http://localhost:8080/file/7',
-
-         }, 
-         
-         { 
-         url: 'http://localhost:8080/file/8'
-         },
-         
-         { 
-         url: 'http://localhost:8080/file/10'
-         },
-          { 
-         url: 'http://localhost:8080/file/11'
-         },{ 
-         url: 'http://localhost:8080/file/12'
-         },{ 
-         url: 'http://localhost:8080/file/13'
-         },{ 
-         url: 'http://localhost:8080/file/14'
-         },{ 
-         url: 'http://localhost:8080/file/15'
-         },
-         { 
-         url: 'http://localhost:8080/file/19'
-         },
-         { 
-         url: 'http://localhost:8080/file/20'
-         },
-         { 
-         url: 'http://localhost:8080/file/21'
-         },
-         { 
-         url: 'http://localhost:8080/file/23'
-         }
-         
+        items: [       
          ],
-
-
         dialogImageUrl: '',
         dialogVisible: false,
          loading:true
       };
     },
     methods: {
+      getImage(){
+        this.$http.get('http://localhost:8080/showImg').then((res)=>{
+            this.items=res.body;
+        }).catch(err=>{
+            this.$message({
+            type:'error',
+            message:'参数错误！'
+          })
+           console.log(err);
+        })
+      },
       handleRemove(file, fileList) {
-           
-          this.$message({
+           let id=file.id;
+           this.$http.get(`http://localhost:8080/deleteImg/${id}`).then((res)=>{
+            this.$message({
             type:'success',
             message:'删除成功！'
           })
-          
-
-        
+        }).catch(err=>{
+           console.log(err)
+        })  
       }, 
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
       submitUpload() {
+
+
+
       }
       
-    }
+    },
+mounted:function(){
+  this.getImage();
+}
+
   }
 </script>

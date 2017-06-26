@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<!--工具条-->
+
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
 				<el-form-item>
@@ -12,7 +12,7 @@
 			</el-form>
 		</el-col>
 
-		<!--列表-->
+		
 		<template>
 			<el-table :data="users" highlight-current-row v-loading="loading" style="width: 100%;">
 				<el-table-column type="index" width="60">
@@ -34,7 +34,6 @@
 </template>
 <script>
 	import { getUserList } from '../../api/api';
-	//import NProgress from 'nprogress'
 	export default {
 		data() {
 			return {
@@ -47,21 +46,21 @@
 			}
 		},
 		methods: {
-			//性别显示转换
+		
 			formatSex: function (row, column) {
 				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
 			},
-			//获取用户列表
+
 			getUser: function () {
 				let para = {
 					name: this.filters.name
 				};
 				this.loading = true;
-				//NProgress.start();
+		
 				getUserList(para).then((res) => {
 					this.users = res.data.users;
 					this.loading = false;
-					//NProgress.done();
+		
 				});
 			}
 		},

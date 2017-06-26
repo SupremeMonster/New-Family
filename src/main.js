@@ -3,12 +3,9 @@ import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-//import './assets/theme/theme-green/index.css'
 import VueRouter from 'vue-router'
 import store from './vuex/store'
 import Vuex from 'vuex'
-//import NProgress from 'nprogress'
-//import 'nprogress/nprogress.css'
 import routes from './routes'
 import Mock from './mock'
 Mock.bootstrap();
@@ -21,14 +18,19 @@ Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(VueResource);
 Vue.prototype.$ajax = axios
-//NProgress.configure({ showSpinner: false });
+
 
 const router = new VueRouter({
   routes
 })
 
+Vue.filter('userDate', function(value) {
+  if (!value) { return ''}
+  return new Date(parseInt(value)).toLocaleString().replace(/:\d{1,2}$/,' ').slice(0,9);
+})
+
 router.beforeEach((to, from, next) => {
-  //NProgress.start();
+
   if (to.path == '/login') {
     sessionStorage.removeItem('user');
   }
@@ -43,11 +45,10 @@ router.beforeEach((to, from, next) => {
 
 
 new Vue({
-  //el: '#app',
-  //template: '<App/>',
+
   router,
   store,
-  //components: { App }
+
   render: h => h(App)
 }).$mount('#app')
 

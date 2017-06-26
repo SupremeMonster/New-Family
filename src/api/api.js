@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+//通讯录部分尝试使用mock.js生成
 let base = '';
 
 export const requestLogin = params => { return axios.post(`${base}/login`, params).then(res => res.data); };

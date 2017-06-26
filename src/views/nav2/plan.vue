@@ -12,25 +12,25 @@
       <el-button @click='search'icon='search'>查询</el-button>
       
     </div>
-    <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="id" label="编号" width='70'>
+    <el-table :data="tableData" border style="width: 66.7%">
+      <el-table-column prop="id" label="编号" width="120">
       </el-table-column>
       <el-table-column prop="plan" label="计划" width="200">
       </el-table-column>
-      <el-table-column prop="user" label="参与者" width="150">
+      <el-table-column prop="user" label="参与者" width="200">
       </el-table-column>
-      <el-table-column prop="start" label="开始时间" width='188'>
+      <el-table-column prop="start" label="开始时间" width='200'>
         <template scope="scope">
           {{parseDate(scope.row.start)}}
 </template>
       </el-table-column>
-      <el-table-column prop="end" label="结束时间" width='188'>
+      <el-table-column prop="end" label="结束时间" width='200'>
 <template scope="scope">
    {{parseDate(scope.row.end)}}
 </template>
       </el-table-column>
 
-      <el-table-column label="操作" width="310">
+      <el-table-column label="操作" width="200">
 <template scope="scope">
   <el-button size="small" @click="checkState(scope.$index, scope.row)" icon="warning">查看状态</el-button>
   <el-button size="small" @click="handleEdit(scope.$index, scope.row)" icon='edit'>

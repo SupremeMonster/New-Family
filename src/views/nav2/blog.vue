@@ -8,7 +8,7 @@
     </el-carousel-item>
   </el-carousel>
 
-  
+ <!-- 家庭日志模块在4000端口的nodejs服务器 -->
    <center>
    <a href="http://localhost:4000/blog" style="font-size:20px;text-decoration:none;line-height:50px" >
    <el-button size="small" type="primary" class="el-icon-edit">

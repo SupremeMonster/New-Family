@@ -21,16 +21,7 @@
 <h6 style="display:inline">关注我的微信公众号：</h6> <img src="../../assets/erweima.jpg" style="margin-left:30px;">
 </div>
 
-
-
-
 </template>
-
-
-
-
-
-
 
 <style>
 
